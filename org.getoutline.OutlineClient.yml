@@ -13,6 +13,7 @@ finish-args:
   - --socket=x11
   - --talk-name=org.freedesktop.Notifications
   - --talk-name=org.kde.StatusNotifierWatcher
+  - --talk-name=org.freedesktop.Flatpak
 modules:
   - name: outline-client
     buildsystem: simple
@@ -40,10 +41,6 @@ modules:
 
       - install -D host-exec-wrapper.sh /app/bin/host-exec-wrapper
       - ln -s /app/bin/host-exec-wrapper /app/bin/pkexec
-      - ln -s /app/bin/host-exec-wrapper /app/bin/gksu
-      - ln -s /app/bin/host-exec-wrapper /app/bin/gksudo
-      - ln -s /app/bin/host-exec-wrapper /app/bin/kdesu
-      - ln -s /app/bin/host-exec-wrapper /app/bin/kdesudo
     sources:
       - type: file
         only-arches: [x86_64]
