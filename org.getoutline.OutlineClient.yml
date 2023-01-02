@@ -12,6 +12,7 @@ finish-args:
   - --share=network
   - --socket=x11
   - --talk-name=org.freedesktop.Notifications
+  - --talk-name=org.kde.StatusNotifierWatcher
 modules:
   - name: outline-client
     buildsystem: simple
@@ -32,6 +33,13 @@ modules:
         done
 
       - mv squashfs-root ${FLATPAK_DEST}/outline-client
+
+      - install -D host-exec-wrapper.sh /app/bin/host-exec-wrapper
+      - ln -s /app/bin/host-exec-wrapper /app/bin/pkexec
+      - ln -s /app/bin/host-exec-wrapper /app/bin/gksu
+      - ln -s /app/bin/host-exec-wrapper /app/bin/gksudo
+      - ln -s /app/bin/host-exec-wrapper /app/bin/kdesu
+      - ln -s /app/bin/host-exec-wrapper /app/bin/kdesudo
     sources:
       - type: file
         only-arches: [x86_64]
@@ -48,3 +56,8 @@ modules:
 
       - type: file
         path: org.getoutline.OutlineClient.metainfo.xml
+
+      # To setup transparency proxy
+      # https://github.com/flathub/com.github.d4nj1.tlpui/blob/4cbe9ac147eec65133484b073beb6ddf55c0ccc3/com.github.d4nj1.tlpui.yml#L46-L47
+      - type: file
+        path: host-exec-wrapper.sh
