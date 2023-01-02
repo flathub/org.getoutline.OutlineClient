@@ -20,6 +20,10 @@ modules:
       - chmod +x Outline-Client.AppImage
       - ./Outline-Client.AppImage --appimage-extract
 
+      # Make sudo-prompt find binary files under /app
+      - chmod +x ./patch-resources.py
+      - ./patch-resources.py squashfs-root/resources/app.asar
+
       - desktop-file-edit --set-icon ${FLATPAK_ID} --set-key Exec --set-value 'outline-client %u' squashfs-root/outline-client.desktop
       - install -Dm644 squashfs-root/outline-client.desktop ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
 
@@ -61,3 +65,6 @@ modules:
       # https://github.com/flathub/com.github.d4nj1.tlpui/blob/4cbe9ac147eec65133484b073beb6ddf55c0ccc3/com.github.d4nj1.tlpui.yml#L46-L47
       - type: file
         path: host-exec-wrapper.sh
+
+      - type: file
+        path: patch-resources.py
