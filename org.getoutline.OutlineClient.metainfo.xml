@@ -17,6 +17,8 @@
             an access key from an Outline server administrator in order to use it effectively. This
             access key contains an encryption code or password that allows your device to
             communicate with the Outline server.</p>
+        <p><b>Note</b>: To allow Outline to set up the VPN for your system, run it with <code>flatpak
+            run --talk-name=org.freedesktop.Flatpak org.getoutline.OutlineClient</code>.</p>
     </description>
 
     <url type="homepage">https://www.getoutline.org/</url>

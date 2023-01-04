@@ -12,12 +12,21 @@ finish-args:
   - --share=network
   - --socket=x11
   - --talk-name=org.freedesktop.Notifications
+  - --talk-name=org.kde.StatusNotifierWatcher
+
+  # To allow Outline to set up the VPN for the system
+  # Ask the user to add this flag when run before this repo is added to the allowlist
+  # - --talk-name=org.freedesktop.Flatpak
 modules:
   - name: outline-client
     buildsystem: simple
     build-commands:
       - chmod +x Outline-Client.AppImage
       - ./Outline-Client.AppImage --appimage-extract
+
+      # Make sudo-prompt find binary files under /app
+      - chmod +x ./patch-resources.py
+      - ./patch-resources.py squashfs-root/resources/app.asar
 
       - desktop-file-edit --set-icon ${FLATPAK_ID} --set-key Exec --set-value 'outline-client %u' squashfs-root/outline-client.desktop
       - install -Dm644 squashfs-root/outline-client.desktop ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
@@ -32,6 +41,9 @@ modules:
         done
 
       - mv squashfs-root ${FLATPAK_DEST}/outline-client
+
+      - install -D install-linux-service-wrapper.py /app/bin/host-exec-wrapper
+      - ln -s /app/bin/host-exec-wrapper /app/bin/pkexec
     sources:
       - type: file
         only-arches: [x86_64]
@@ -48,3 +60,10 @@ modules:
 
       - type: file
         path: org.getoutline.OutlineClient.metainfo.xml
+
+      # To setup transparency proxy on host OS
+      - type: file
+        path: install-linux-service-wrapper.py
+
+      - type: file
+        path: patch-resources.py
