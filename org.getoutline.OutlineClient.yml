@@ -42,7 +42,7 @@ modules:
 
       - mv squashfs-root ${FLATPAK_DEST}/outline-client
 
-      - install -D host-exec-wrapper.sh /app/bin/host-exec-wrapper
+      - install -D install-linux-service-wrapper.py /app/bin/host-exec-wrapper
       - ln -s /app/bin/host-exec-wrapper /app/bin/pkexec
     sources:
       - type: file
@@ -61,10 +61,9 @@ modules:
       - type: file
         path: org.getoutline.OutlineClient.metainfo.xml
 
-      # To setup transparency proxy
-      # https://github.com/flathub/com.github.d4nj1.tlpui/blob/4cbe9ac147eec65133484b073beb6ddf55c0ccc3/com.github.d4nj1.tlpui.yml#L46-L47
+      # To setup transparency proxy on host OS
       - type: file
-        path: host-exec-wrapper.sh
+        path: install-linux-service-wrapper.py
 
       - type: file
         path: patch-resources.py
