@@ -1,9 +1,9 @@
 app-id: org.getoutline.OutlineClient
 runtime: org.freedesktop.Platform
-runtime-version: "22.08"
+runtime-version: '22.08'
 sdk: org.freedesktop.Sdk
 base: org.electronjs.Electron2.BaseApp
-base-version: "22.08"
+base-version: '22.08'
 command: outline-client
 separate-locales: false
 finish-args:
@@ -19,7 +19,8 @@ modules:
       - chmod +x Outline-Client.AppImage
       - ./Outline-Client.AppImage --appimage-extract
 
-      - desktop-file-edit --set-icon ${FLATPAK_ID} --set-key Exec --set-value 'outline-client %u' squashfs-root/outline-client.desktop
+      - desktop-file-edit --set-icon ${FLATPAK_ID} --set-key Exec --set-value 'outline-client
+        %u' squashfs-root/outline-client.desktop
       - install -Dm644 squashfs-root/outline-client.desktop ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
 
       - install -Dm755 outline-client.sh ${FLATPAK_DEST}/bin/outline-client
@@ -36,7 +37,7 @@ modules:
       - type: file
         only-arches: [x86_64]
         url: https://s3.amazonaws.com/outline-releases/client/linux/stable/Outline-Client.AppImage
-        sha512: ca5f2048ae98f0463cfafc0533978791bec65a5075252bf8ed21b4d0c1fc81a986574724f096252c696a2a8c5b25cccf157d7047e4daeb984a1264dc657dbd23
+        sha512: 8354e3bf54385c4e5a2a8d1750ac12678642a2b563b92849e0c05575732b3ab95fabf634013cb0983e28caa28fbb65bd182f427da65dee86414852047cf14dc1
         dest_filename: Outline-Client.AppImage
         x-checker-data:
           type: rotating-url
