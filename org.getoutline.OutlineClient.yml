@@ -13,7 +13,10 @@ finish-args:
   - --socket=x11
   - --talk-name=org.freedesktop.Notifications
   - --talk-name=org.kde.StatusNotifierWatcher
-  - --talk-name=org.freedesktop.Flatpak
+
+  # To allow Outline to set up the VPN for the system
+  # Ask the user to add this flag when run before this repo is added to the allowlist
+  # - --talk-name=org.freedesktop.Flatpak
 modules:
   - name: outline-client
     buildsystem: simple
