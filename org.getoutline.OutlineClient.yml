@@ -46,7 +46,7 @@ modules:
       - type: file
         only-arches: [x86_64]
         url: https://s3.amazonaws.com/outline-releases/client/linux/stable/Outline-Client.AppImage
-        sha512: bab64ac2457c5702f1db70205d80fd1115f033029418fc7183771624bd3225ba87a27baea60dc93fea55703b947b7fa7834417bb41b8ce4f782ded18b462be30
+        sha512: a5eb95badf391684acc340aec0b067459e0c753c28303884a2f7268cf12982c87a0f93a0c93d1dc37a08986bfc095ad860e8069f13aa62c0a2bdf40cd2d2e49b
         dest_filename: Outline-Client.AppImage
         x-checker-data:
           type: rotating-url
