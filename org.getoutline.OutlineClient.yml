@@ -28,7 +28,7 @@ modules:
       - |
         for IMG_SIZE in 16 24 32 48 64 128 256 512; do
             IMG_NAME=${IMG_SIZE}x${IMG_SIZE}
-            install -Dm644 squashfs-root/usr/share/icons/hicolor/${IMG_NAME}/apps/outline-client.png ${FLATPAK_DEST}/share/icons/hicolor/${IMG_NAME}/apps/${FLATPAK_ID}.png
+            install -Dm644 squashfs-root/usr/share/icons/hicolor/${IMG_NAME}/apps/Outline.png ${FLATPAK_DEST}/share/icons/hicolor/${IMG_NAME}/apps/${FLATPAK_ID}.png
         done
 
       - mv squashfs-root ${FLATPAK_DEST}/outline-client
