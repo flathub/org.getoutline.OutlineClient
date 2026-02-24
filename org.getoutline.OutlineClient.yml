@@ -19,8 +19,8 @@ modules:
       - ./Outline-Client.AppImage --appimage-extract
 
       - desktop-file-edit --set-icon ${FLATPAK_ID} --set-key Exec --set-value 'outline-client
-        %u' squashfs-root/outline-client.desktop
-      - install -Dm644 squashfs-root/outline-client.desktop ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
+        %u' ./squashfs-root/Outline.desktop
+      - install -Dm644 ./squashfs-root/Outline.desktop ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
 
       - install -Dm755 outline-client.sh ${FLATPAK_DEST}/bin/outline-client
       - install -Dm644 org.getoutline.OutlineClient.metainfo.xml ${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml
