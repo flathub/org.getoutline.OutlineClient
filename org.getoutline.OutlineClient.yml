@@ -1,9 +1,9 @@
 app-id: org.getoutline.OutlineClient
 runtime: org.freedesktop.Platform
-runtime-version: '22.08'
+runtime-version: '25.08'
 sdk: org.freedesktop.Sdk
 base: org.electronjs.Electron2.BaseApp
-base-version: '22.08'
+base-version: '25.08'
 command: outline-client
 finish-args:
   - --device=dri
@@ -19,8 +19,8 @@ modules:
       - ./Outline-Client.AppImage --appimage-extract
 
       - desktop-file-edit --set-icon ${FLATPAK_ID} --set-key Exec --set-value 'outline-client
-        %u' squashfs-root/outline-client.desktop
-      - install -Dm644 squashfs-root/outline-client.desktop ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
+        %u' ./squashfs-root/Outline.desktop
+      - install -Dm644 ./squashfs-root/Outline.desktop ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
 
       - install -Dm755 outline-client.sh ${FLATPAK_DEST}/bin/outline-client
       - install -Dm644 org.getoutline.OutlineClient.metainfo.xml ${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml
@@ -28,7 +28,7 @@ modules:
       - |
         for IMG_SIZE in 16 24 32 48 64 128 256 512; do
             IMG_NAME=${IMG_SIZE}x${IMG_SIZE}
-            install -Dm644 squashfs-root/usr/share/icons/hicolor/${IMG_NAME}/apps/outline-client.png ${FLATPAK_DEST}/share/icons/hicolor/${IMG_NAME}/apps/${FLATPAK_ID}.png
+            install -Dm644 squashfs-root/usr/share/icons/hicolor/${IMG_NAME}/apps/Outline.png ${FLATPAK_DEST}/share/icons/hicolor/${IMG_NAME}/apps/${FLATPAK_ID}.png
         done
 
       - mv squashfs-root ${FLATPAK_DEST}/outline-client
@@ -46,7 +46,7 @@ modules:
       - type: file
         only-arches: [x86_64]
         url: https://s3.amazonaws.com/outline-releases/client/linux/stable/Outline-Client.AppImage
-        sha512: de1874048865a309458fa5639657bb325a0c0c0900c62cbadd46f519828d1fc70139a1900b1719de3c4814df241ad72b3f7cb6c0dc38448053d65c16d0c36aa3
+        sha512: cb385e59b4fdf617a86210362c978224e50fe13364eeeb2a2503fa84b11e690e8c7c8fdd8c493d7ff1cb1f1211b7e72565f89a090b5cbf1701d421b21d0118ec
         dest_filename: Outline-Client.AppImage
         x-checker-data:
           type: rotating-url
